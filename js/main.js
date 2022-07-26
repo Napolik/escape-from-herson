@@ -12,6 +12,7 @@ class Ground extends HTMLElement {
 
   eventListener() {
     const _self = this;
+
     document.addEventListener('keydown', function(event) {
       switch (event.code) {
         case 'ArrowRight' : _self.move('right'); break;
@@ -34,12 +35,8 @@ class Ground extends HTMLElement {
     this.orc.classList.add('jump');
 
     setTimeout(() => {
-      cancelJump();
-    }, 500);
-
-    function cancelJump() {
       document.querySelector('.orc').classList.remove('jump');
-    }
+    }, 500);
   }
 }
 
