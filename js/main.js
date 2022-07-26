@@ -12,15 +12,12 @@ class Ground extends HTMLElement {
 
   eventListener() {
     const _self = this;
+
     document.addEventListener('keydown', function(event) {
-      if (event.code === 'ArrowRight') {
-        _self.move('right');
-      }
-      if (event.code === 'ArrowLeft') {
-        _self.move('left');
-      }
-      if (event.code === 'ArrowUp') {
-        _self.jump();
+      switch (event.code) {
+        case 'ArrowRight' : _self.move('right'); break;
+        case 'ArrowLeft'  : _self.move('left'); break;
+        case 'ArrowUp'    : _self.jump(); break;
       }
     });
   }
@@ -28,15 +25,18 @@ class Ground extends HTMLElement {
   move(direction) {
     const currentPosition = this.orc.offsetLeft;
 
-    if (direction === 'left') {
-      this.orc.style.left = (currentPosition - 30) + 'px';
-    } else {
-      this.orc.style.left = (currentPosition + 30) + 'px';
+    switch (direction) {
+      case 'left' : this.orc.style.left = (currentPosition - 30) + 'px'; break;
+      case 'right' : this.orc.style.left = (currentPosition + 30) + 'px'; break;
     }
   }
 
   jump() {
     this.orc.classList.add('jump');
+
+    setTimeout(() => {
+      document.querySelector('.orc').classList.remove('jump');
+    }, 500);
   }
 }
 
